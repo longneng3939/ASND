@@ -56,10 +56,11 @@ export const heroSlides: HeroSlide[] = [
     titleKo: "이루지 못한 것을 이루다",
     description: "A new beginning for fromis_9 and Wendy",
     descriptionKo: "프로미스나인과 웬디의 새로운 시작",
-    youtubeId: "0LiQp7y8Wwc",
+    youtubeId: "5PS2cJsSJrI",
     startTime: 0,
-    endTime: 30,
-    linkType: "none",
+    endTime: 15,
+    linkType: "youtube",
+    moreUrl: "/artists/fromis_9",
   },
   {
     id: "fromis-fanmeet",
@@ -71,10 +72,11 @@ export const heroSlides: HeroSlide[] = [
     description: "I Like You Better - fromis_9",
     descriptionKo: "서울 YES24 라이브홀에서 개최",
     releaseDate: "2026-07-05",
-    youtubeId: "0LiQp7y8Wwc",
+    youtubeId: "r1QapH1SIAI",
     startTime: 60,
     endTime: 120,
-    linkType: "more",
+    linkType: "youtube",
     moreUrl: "/schedule",
   },
 ];
+//https://youtu.be/r1QapH1SIAI?si=Myn4etPCvY5eJM0Z
