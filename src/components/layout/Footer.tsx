@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
 import { siteConfig } from "@/data/site";
@@ -56,13 +55,7 @@ export function Footer() {
           {/* Logo Column - Space for your logo */}
           <div className="col-span-2 sm:col-span-4 md:col-span-1">
             <Link href="/" className="flex items-center mb-4">
-              <Image
-                src="/images/logo.svg"
-                alt="ASND Label"
-                width={120}
-                height={32}
-                className="h-8 w-auto"
-              />
+              <span className="text-xl font-black tracking-tight">ASND</span>
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-4">
               {siteConfig.tagline}
