@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "ASND Label | Achieve Something Never Done Before",
   description:
     "ASND Label is a South Korean entertainment company home to fromis_9 and Wendy.",
+  icons: {
+    icon: "/images/logo.jpg",
+    shortcut: "/images/logo.jpg",
+  },
   openGraph: {
     title: "ASND Label",
     description: "Achieve Something Never Done Before",
