@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useI18n } from "@/i18n";
 
 interface NoticeBannerProps {
@@ -28,12 +28,13 @@ export function NoticeBanner({
 }: NoticeBannerProps) {
   const { lang } = useI18n();
   const storageKey = `notice-dismissed-${id}`;
-  const [isVisible, setIsVisible] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem(storageKey) !== "true";
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem(storageKey) === "true") {
+      setIsVisible(false);
     }
-    return true;
-  });
+  }, [storageKey]);
 
   const displayTitle = lang === "ko" && titleKo ? titleKo : title;
   const displayMessage = lang === "ko" && messageKo ? messageKo : message;

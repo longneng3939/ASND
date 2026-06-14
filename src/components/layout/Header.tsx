@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
 import { siteConfig } from "@/data/site";
@@ -70,14 +69,7 @@ export function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/images/logo.svg"
-                alt="ASND Label"
-                width={120}
-                height={32}
-                className="h-8 w-auto"
-                priority
-              />
+              <span className="text-xl font-black tracking-tight">ASND</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-1">
