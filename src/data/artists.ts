@@ -9,7 +9,7 @@ export interface Artist {
   descriptionKo: string;
   image: string;
   bannerImage?: string;
-  color: string;
+  color?: string;
   social?: {
     instagram?: string;
     twitter?: string;
@@ -37,7 +37,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인은 서바이벌 프로그램 '아이돌학교'를 통해 결성된 대한민국 걸그룹입니다. 밝고 에너제틱한 콘셉트로 사랑받으며, ASND 레이블에서 5인의 멤버로 새로운 도약을 이어가고 있습니다.",
     image: "/images/Group.jpg",
-    color: "#FF6B9D",
+    bannerImage: "/images/logo.jpg",
     social: {
       instagram: "https://instagram.com/fromis_9",
       twitter: "https://twitter.com/fromis_9",
@@ -62,7 +62,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 메인보컬로 따뜻하고 파워풀한 목소리를 가진 송하영은 감성적인 전달력과 무대 장악력으로 잘 알려져 있습니다.",
     image: "/images/Hayoung.jpg",
-    color: "#FF8C42",
+    bannerImage: "/images/Hayoung-bg.png",
   },
   {
     id: "jiwon",
@@ -75,7 +75,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 리더이자 리드보컬인 박지원은 뛰어난 댄스와 보컬 실력을 겸비한 카리스마 넘치는 퍼포머입니다.",
     image: "/images/Jiwon.jpg",
-    color: "#4ECDC4",
+    bannerImage: "/images/Jiwon-bg.png",
   },
   {
     id: "chaeyoung",
@@ -88,7 +88,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 메인댄서이자 리드래퍼인 이채영은 날카로운 춤선과 독특한 랩 스타일로 유명합니다.",
     image: "/images/chaeyoung.jpg",
-    color: "#A855F7",
+    bannerImage: "/images/Chaeyoung.png",
   },
   {
     id: "nagyung",
@@ -101,7 +101,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 리드댄서이자 보컬리스트인 이나경은 뛰어난 비주얼과 우아한 무대 매너로 잘 알려져 있습니다.",
     image: "/images/Nagyung.jpg",
-    color: "#F472B6",
+    bannerImage: "/images/Nagyung-bg.png",
   },
   {
     id: "jiheon",
@@ -114,7 +114,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 보컬리스트이자 막내인 백지헌은 달콤한 목소리와 밝고 youthful한 에너지로 사랑받고 있습니다.",
     image: "/images/Jiheon.jpg",
-    color: "#60A5FA",
+    bannerImage: "/images/Jiheon.png",
   },
   {
     id: "wendy",
@@ -127,7 +127,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "솔로 아티스트이자 Red Velvet의 멤버인 웬디는 파워풀한 보컬과 다양한 음악적 스펙트럼, 따뜻한 성격으로 잘 알려져 있습니다. ASND에서 솔로 활동을 이어가며 Red Velvet 그룹 활동도 병행합니다.",
     image: "/images/wendy.jpg",
-    color: "#FFD700",
+    bannerImage: "/images/Wendy.png",
     social: {
       instagram: "https://instagram.com/today_wendy",
       youtube: "https://youtube.com/@wendy",

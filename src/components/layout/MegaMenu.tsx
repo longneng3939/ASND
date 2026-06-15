@@ -19,6 +19,7 @@ const navLinks = [
   { href: "/audition", label: "Audition", labelKo: "오디션", desc: "Join ASND", descKo: "지원하기" },
   { href: "/about", label: "About", labelKo: "소개", desc: "Our story", descKo: "ASND 소개" },
   { href: "/contact", label: "Contact", labelKo: "문의", desc: "Get in touch", descKo: "연락처" },
+  { href: "/creator", label: "Creator", labelKo: "크리에이터", desc: "About the creator", descKo: "제작자 정보" },
 ];
 
 const socialLinks = [
@@ -117,17 +118,12 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
     >
       <div
         ref={menuRef}
-        className="absolute inset-0 transition-[clip-path] duration-[500ms] ease-in-out"
-        style={{
-          clipPath: `circle(${isOpen ? "150%" : "0%"} at calc(100% - 44px) 36px)`,
-        }}
+        className={`absolute inset-0 origin-top-right transition-all duration-[400ms] ease-in-out ${
+          isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+        }`}
       >
         <div className="h-full w-full bg-[#050505] text-white overflow-y-auto">
-          <div
-            className={`flex flex-col min-h-full transition-opacity duration-300 ${
-              isOpen ? "opacity-100 delay-150" : "opacity-0"
-            }`}
-          >
+          <div className="flex flex-col min-h-full">
             {/* Top bar */}
             <div className="flex items-center justify-between px-6 md:px-10 py-4 md:py-6">
               <button
@@ -175,22 +171,31 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 </span>
                 <div className="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-4">
                   {artists.slice(0, 9).map((artist, i) => (
-                    <button
+                    <div
                       key={artist.id}
                       onClick={() => handleNav(`/artists/${artist.id}`)}
-                      className="group text-left"
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleNav(`/artists/${artist.id}`); } }}
+                      role="button"
+                      tabIndex={0}
+                      className="group text-left cursor-pointer"
                       style={{ transitionDelay: isOpen ? `${300 + i * 50}ms` : "0ms" }}
                     >
-                      <div className="aspect-square rounded-2xl overflow-hidden bg-white/[0.04] border border-white/[0.06] transition-all duration-300 group-hover:border-white/20 group-hover:scale-[1.03] group-hover:shadow-[0_0_30px_rgba(247,200,216,0.08)]">
+                      <div className="relative overflow-hidden rounded-2xl">
                         <div
-                          className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                          style={{ backgroundImage: `url(${artist.image})` }}
+                          className="w-full aspect-square rounded-2xl bg-cover bg-center border border-white/[0.06]"
+                          style={{
+                            backgroundImage: artist.bannerImage ? `url(${artist.bannerImage})` : undefined,
+                            backgroundColor: artist.bannerImage ? undefined : (artist.color || "#222"),
+                          }}
                         />
+                        <div className="absolute inset-0 z-10 transition-transform duration-300 ease-in-out group-hover:translate-x-[70%]">
+                          <div
+                            className="h-full w-full bg-cover bg-center rounded-2xl border border-white/[0.06]"
+                            style={{ backgroundImage: `url(${artist.image})` }}
+                          />
+                        </div>
                       </div>
-                      <span className="block text-xs md:text-sm font-medium text-white/60 group-hover:text-white transition-colors duration-300 mt-2 truncate">
-                        {lang === "ko" ? artist.nameKo : artist.name}
-                      </span>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
