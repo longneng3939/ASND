@@ -101,7 +101,7 @@ export const artists: Artist[] = [
     descriptionKo:
       "프로미스나인의 리드댄서이자 보컬리스트인 이나경은 뛰어난 비주얼과 우아한 무대 매너로 잘 알려져 있습니다.",
     image: "/images/Nagyung.jpg",
-    bannerImage: "/images/Nagyung-bg.png",
+    bannerImage: "/images/nagyung-bg.png",
   },
   {
     id: "jiheon",
