@@ -18,7 +18,7 @@ export default function ContactPage() {
           <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4">
             Contact
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-none mb-3">
+          <h1 className="text-3xl sm:text-6xl font-black tracking-tight leading-none mb-3">
             {t.contact.title}
           </h1>
           <p className="text-gray-500 text-base">

@@ -175,7 +175,7 @@ export function JypHeroCarousel() {
           <p className="text-xs sm:text-sm text-white/50 uppercase tracking-[0.2em] mb-2 sm:mb-3">
             {slide.artist}
           </p>
-          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-white leading-none mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-5xl md:text-7xl font-black tracking-tight text-white leading-none mb-3 sm:mb-4">
             {lang === "ko" && slide.titleKo ? slide.titleKo : slide.title}
           </h2>
           {slide.description && (

@@ -45,7 +45,7 @@ export default function ArtistDetailPage() {
               <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-3">
                 {artist.type === "group" ? t.artists.groups : t.artists.soloists}
               </p>
-              <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-none mb-2">
+              <h1 className="text-3xl sm:text-6xl font-black tracking-tight leading-none mb-2">
                 {artist.name}
               </h1>
               {artist.nameKo && (

@@ -67,13 +67,16 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Mobile menu">
+    <div
+      className={`fixed inset-0 z-50 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      role="dialog"
+      aria-modal={isOpen}
+      aria-label="Mobile menu"
+    >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+        className={`absolute inset-0 transition-all duration-300 ${isOpen ? "bg-black/50 backdrop-blur-sm" : "bg-transparent"}`}
         onClick={onClose}
         aria-hidden="true"
       />
@@ -81,7 +84,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       {/* Menu Panel */}
       <div
         ref={menuRef}
-        className="absolute right-0 top-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out translate-x-0"
+        className={`absolute right-0 top-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-100">
