@@ -19,7 +19,7 @@ const navLinks = [
 ];
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const { lang } = useI18n();
+  const { lang, setLang } = useI18n();
   const menuRef = useRef<HTMLDivElement>(null);
   const { navigate } = useTransition();
 
@@ -111,6 +111,30 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               ))}
             </ul>
           </nav>
+
+          <div className="p-4 border-t border-gray-100">
+            <div className="flex items-center justify-between px-4">
+              <span className="text-sm text-muted">{lang === "en" ? "Language" : "언어"}</span>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => { setLang("en"); onClose(); }}
+                  className={`px-2.5 py-1.5 text-sm rounded transition-colors ${
+                    lang === "en" ? "bg-[#1E2A44] text-white font-medium" : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => { setLang("ko"); onClose(); }}
+                  className={`px-2.5 py-1.5 text-sm rounded transition-colors ${
+                    lang === "ko" ? "bg-[#1E2A44] text-white font-medium" : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  KR
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div className="p-4 border-t border-gray-100">
             <div className="flex items-center gap-4 px-4">
