@@ -28,8 +28,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
   const navigate = useCallback((href: string) => {
     setIsLoading(true);
+    if (href === pathname) {
+      setTimeout(() => setIsLoading(false), 400);
+      return;
+    }
     router.push(href);
-  }, [router]);
+  }, [router, pathname]);
 
   return (
     <TransitionContext.Provider value={{ navigate, isLoading }}>

@@ -1,0 +1,2 @@
+The BUG When loading the ASND Logo is stuck in there it should be redirect the link like when touching on the Logo
+ASND it should be redirect to the home page
