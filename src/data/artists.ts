@@ -45,9 +45,10 @@ export const artists: Artist[] = [
     },
     discography: [
       {
-        title: "From",
-        type: "Special Single",
-        releaseDate: "2024-12-23",
+        title: "I like you better",
+        type: "Group",
+        releaseDate: "2025-06-25",
+        image: "/images/likeyou.jpg"
       },
     ],
   },
@@ -117,15 +118,15 @@ export const artists: Artist[] = [
     bannerImage: "/images/Jiheon.png",
   },
   {
-    id: "wendy",
-    name: "Wendy",
-    nameKo: "웬디",
-    type: "soloist",
-    debut: "2021",
+    id: "fromis9",
+    name: "Fromis9",
+    nameKo: "프로미스나인",
+    type: "group",
+    debut: "2018",
     description:
-      "Soloist and member of Red Velvet. Known for her powerful vocals, versatility in music, and warm personality. Wendy continues her solo journey with ASND while maintaining group activities with Red Velvet.",
+      "fromis_9 is a South Korean girl group formed through the survival show 'Idol School'. Known for their bright and energetic concepts, the group continues their journey under ASND Label with five members.",
     descriptionKo:
-      "솔로 아티스트이자 Red Velvet의 멤버인 웬디는 파워풀한 보컬과 다양한 음악적 스펙트럼, 따뜻한 성격으로 잘 알려져 있습니다. ASND에서 솔로 활동을 이어가며 Red Velvet 그룹 활동도 병행합니다.",
+      "프로미스나인은 서바이벌 프로그램 '아이돌학교'를 통해 결성된 대한민국의 걸그룹으로, 밝고 에너제틱한 콘셉트로 많은 사랑을 받고 있습니다. 현재 5인의 멤버로 ASND 레이블에서 활발한 활동을 이어가고 있습니다.",
     image: "/images/wendy.jpg",
     bannerImage: "/images/Wendy.png",
     social: {
@@ -134,14 +135,16 @@ export const artists: Artist[] = [
     },
     discography: [
       {
-        title: "Like Water",
+        title: "DM",
         type: "Mini Album",
-        releaseDate: "2021-04-05",
+        releaseDate: "2026-01-12",
+        image: "/images/Dm.jpg"
       },
       {
-        title: "Wish You Hell",
+        title: "Supersonic",
         type: "Mini Album",
-        releaseDate: "2024-03-12",
+        releaseDate: "2024-08-12",
+        image: "/images/Supersonic-album.jpg"
       },
     ],
   },
