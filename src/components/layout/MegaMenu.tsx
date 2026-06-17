@@ -14,6 +14,7 @@ interface MegaMenuProps {
 
 const navLinks = [
   { href: "/artists", label: "Artists", labelKo: "아티스트", desc: "Meet our roster", descKo: "아티스트 소개" },
+  { href: "/album", label: "Album", labelKo: "앨범", desc: "All releases", descKo: "전체 앨범" },
   { href: "/schedule", label: "Schedule", labelKo: "스케줄", desc: "Upcoming events", descKo: "일정 안내" },
   { href: "/news", label: "News", labelKo: "뉴스", desc: "Latest updates", descKo: "최신 소식" },
   { href: "/audition", label: "Audition", labelKo: "오디션", desc: "Join ASND", descKo: "지원하기" },
@@ -154,10 +155,10 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                     className="group w-full text-left py-3 md:py-4 border-b border-white/[0.04] transition-all duration-300"
                     style={{ transitionDelay: isOpen ? `${i * 60}ms` : "0ms" }}
                   >
-                    <span className="block text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white/90 group-hover:text-[#F7C8D8] transition-all duration-300 group-hover:tracking-wide">
+                    <span className="block text-2xl md:text-4xl font-medium tracking-wide text-white/80 group-hover:text-[#F7C8D8] transition-all duration-300">
                       {lang === "ko" ? link.labelKo : link.label}
                     </span>
-                    <span className="block text-sm md:text-base text-white/30 group-hover:text-white/60 transition-all duration-300 mt-0.5">
+                    <span className="block text-xs md:text-sm text-white/20 group-hover:text-white/40 transition-all duration-300 mt-1">
                       {lang === "ko" ? link.descKo : link.desc}
                     </span>
                   </button>
