@@ -19,7 +19,7 @@ const navLinks = [
   { href: "/news", label: "News", labelKo: "뉴스", desc: "Latest updates", descKo: "최신 소식" },
   { href: "/audition", label: "Audition", labelKo: "오디션", desc: "Join ASND", descKo: "지원하기" },
   { href: "/about", label: "About", labelKo: "소개", desc: "Our story", descKo: "ASND 소개" },
-  { href: "/contact", label: "Contact", labelKo: "문의", desc: "Get in touch", descKo: "연락처" },
+  { href: "/contact", label: "Disclosure", labelKo: "공시", desc: "Business info", descKo: "사업자 정보" },
   { href: "/creator", label: "Creator", labelKo: "크리에이터", desc: "About the creator", descKo: "제작자 정보" },
 ];
 
