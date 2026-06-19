@@ -138,7 +138,7 @@ export const artists: Artist[] = [
         title: "Wish You Hell",
         type: "Mini Album",
         releaseDate: "2024-03-12",
-        image: "/images/Wishyou.jpg"
+        image: "/images/wishyou.jpg"
       },
       {
         title: "Supersonic",
