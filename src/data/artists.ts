@@ -50,6 +50,12 @@ export const artists: Artist[] = [
         releaseDate: "2025-06-25",
         image: "/images/likeyou.jpg"
       },
+        {
+        title: "Supersonic",
+        type: "Mini Album",
+        releaseDate: "2024-08-12",
+        image: "/images/Supersonic-album.jpg"
+      },
     ],
   },
   {
@@ -139,12 +145,6 @@ export const artists: Artist[] = [
         type: "Mini Album",
         releaseDate: "2024-03-12",
         image: "/images/wishyou.jpg"
-      },
-      {
-        title: "Supersonic",
-        type: "Mini Album",
-        releaseDate: "2024-08-12",
-        image: "/images/Supersonic-album.jpg"
       },
     ],
   },
