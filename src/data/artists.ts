@@ -118,15 +118,15 @@ export const artists: Artist[] = [
     bannerImage: "/images/Jiheon.png",
   },
   {
-    id: "fromis9",
-    name: "Fromis9",
-    nameKo: "프로미스나인",
-    type: "group",
-    debut: "2018",
+    id: "wendy",
+    name: "Wendy",
+    nameKo: "웬디",
+    type: "soloist",
+    debut: "2015",
     description:
-      "fromis_9 is a South Korean girl group formed through the survival show 'Idol School'. Known for their bright and energetic concepts, the group continues their journey under ASND Label with five members.",
+      "South Korean singer, songwriter, and television presenter best known as a member of the K-pop girl group Red Velvet.",
     descriptionKo:
-      "프로미스나인은 서바이벌 프로그램 '아이돌학교'를 통해 결성된 대한민국의 걸그룹으로, 밝고 에너제틱한 콘셉트로 많은 사랑을 받고 있습니다. 현재 5인의 멤버로 ASND 레이블에서 활발한 활동을 이어가고 있습니다.",
+      "대한민국의 가수, 작곡가, 텔레비전 presenter로 K-pop 걸그룹 레드벨벳의 멤버로 가장 잘 알려져 있습니다.",
     image: "/images/wendy.jpg",
     bannerImage: "/images/Wendy.png",
     social: {
@@ -135,10 +135,10 @@ export const artists: Artist[] = [
     },
     discography: [
       {
-        title: "DM",
+        title: "Wish You Hell",
         type: "Mini Album",
-        releaseDate: "2026-01-12",
-        image: "/images/Dm.jpg"
+        releaseDate: "2024-03-12",
+        image: "/images/Wishyou.jpg"
       },
       {
         title: "Supersonic",
