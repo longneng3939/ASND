@@ -1,0 +1,10 @@
+# BMad Project Configuration
+# Generated during UX design workflow initialization
+
+user_name: "there"
+communication_language: "English"
+document_output_language: "English"
+project_name: "ASND Label Website"
+planning_artifacts: "docs"
+project_knowledge: "docs"
+output_folder: "docs"
