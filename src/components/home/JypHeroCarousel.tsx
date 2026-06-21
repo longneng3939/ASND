@@ -155,7 +155,7 @@ export function JypHeroCarousel() {
   const prev = () => goTo((activeIndex - 1 + heroSlides.length) % heroSlides.length);
 
   return (
-    <section className="relative h-screen overflow-x-hidden bg-[#1E2A44]">
+    <section className="relative h-screen overflow-x-hidden bg-gradient-to-b from-[#1E2A44] to-[#0d1b2a]">
       {heroSlides.map((s, i) => (
         <div
           key={s.id}

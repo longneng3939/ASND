@@ -3,6 +3,7 @@ import { NoticeBanner as NewsTicker } from "@/components/home/NoticeBanner";
 import { NoticeBanner } from "@/components/ui/NoticeBanner";
 import { FeaturedArtists } from "@/components/home/FeaturedArtists";
 import { UpcomingEvents } from "@/components/home/UpcomingEvents";
+import { ScrollytellingAlbums } from "@/components/home/ScrollytellingAlbums";
 
 export default function HomePage() {
   return (
@@ -16,9 +17,8 @@ export default function HomePage() {
         variant="info"
       />
       <JypHeroCarousel />
+      <ScrollytellingAlbums />
       <NewsTicker />
-      <FeaturedArtists />
-      <UpcomingEvents />
     </>
   );
 }
