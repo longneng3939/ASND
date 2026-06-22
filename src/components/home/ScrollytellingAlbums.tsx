@@ -109,19 +109,21 @@ function ColorRope({
     <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none w-full max-w-6xl mx-auto">
       {/* Main rope line */}
       <div
-        className="absolute left-[50%] md:left-[50%] top-0 bottom-0 w-[2px] transition-colors duration-300"
+        className="absolute left-[50%] top-0 bottom-0 w-[2px]"
         style={{
           background: `linear-gradient(180deg, transparent 0%, ${color} 8%, ${colorEnd} 50%, ${color} 92%, transparent 100%)`,
-          filter: `blur(0.3px)`,
+          filter: "blur(0.3px)",
+          transition: "background 0.3s ease",
         }}
       />
 
       {/* Glow behind the rope */}
       <div
-        className="absolute left-[50%] md:left-[50%] -translate-x-1/2 top-0 bottom-0 w-[60px] transition-colors duration-300"
+        className="absolute left-[50%] -translate-x-1/2 top-0 bottom-0 w-[60px]"
         style={{
           background: `linear-gradient(180deg, transparent 0%, ${color}15 15%, ${colorEnd}20 50%, ${color}15 85%, transparent 100%)`,
           filter: "blur(20px)",
+          transition: "background 0.3s ease",
         }}
       />
 
@@ -132,7 +134,7 @@ function ColorRope({
         return (
           <div
             key={album.id}
-            className="absolute left-[50%] md:left-[50%] -translate-x-1/2 transition-all duration-500"
+            className="absolute left-[50%] -translate-x-1/2 transition-all duration-500"
             style={{ top: `${(i / (albums.length - 1)) * 80 + 10}%` }}
           >
             <div
@@ -145,7 +147,6 @@ function ColorRope({
                 boxShadow: isActive
                   ? `0 0 20px ${knotColor}60, 0 0 40px ${knotColor}30`
                   : "none",
-                transform: `translateX(-50%)`,
               }}
             />
           </div>
@@ -173,6 +174,33 @@ function MoodBadge({ album, isVisible }: { album: Album; isVisible: boolean }) {
         style={{ backgroundColor: album.ropeColor }}
       />
       {lang === "ko" ? album.moodKo : album.mood}
+    </div>
+  );
+}
+
+function VinylDisc({ scrollProgress }: { scrollProgress: number }) {
+  return (
+    <div
+      className="absolute top-1/2 -translate-y-1/2 right-0 w-[75%] md:w-[70%] lg:w-[65%]"
+      style={{ zIndex: 0 }}
+    >
+      <div
+        className="w-full aspect-square rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #111 0%, #1a1a1a 20%, #111 21%, #222 40%, #111 41%, #1a1a1a 60%, #111 61%, #222 80%, #111 100%)",
+          border: "1px solid rgba(0,0,0,0.05)",
+          transform: `rotate(${scrollProgress * 210}deg)`,
+          transition: "transform 0.1s linear",
+        }}
+      >
+        {/* Center label */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[28%] aspect-square rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+            <div className="w-[35%] aspect-square rounded-full bg-white/20" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -235,9 +263,9 @@ function AlbumCard({
           isEven ? "md:flex-row" : "md:flex-row-reverse"
         } items-center gap-8 md:gap-16 lg:gap-24 max-w-6xl mx-auto w-full relative z-10`}
       >
-        {/* Album art */}
+        {/* Album art — container holds cover + vinyl, no overflow needed */}
         <div
-          className="relative w-full max-w-[280px] md:max-w-[340px] lg:max-w-[400px] flex-shrink-0"
+          className="relative w-[240px] md:w-[300px] lg:w-[380px] flex-shrink-0"
           style={{
             transform: `translateY(${parallaxY}px) rotate(${albumRotation}deg)`,
             transition: "transform 0.1s linear",
@@ -245,36 +273,24 @@ function AlbumCard({
         >
           {/* Glow behind the album — uses rope color for emotional connection */}
           <div
-            className="absolute -inset-8 md:-inset-12 rounded-3xl blur-3xl opacity-20 transition-opacity duration-700"
+            className="absolute -inset-6 md:-inset-10 rounded-3xl blur-3xl opacity-20 transition-opacity duration-700"
             style={{ backgroundColor: album.ropeColor }}
           />
 
-          {/* Vinyl record peek */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-[-24px] md:right-[-32px]">
-            <div
-              className="w-[200px] h-[200px] md:w-[260px] md:h-[260px] lg:w-[320px] lg:h-[320px] rounded-full border border-black/5"
-              style={{
-                background: `radial-gradient(circle at 50% 50%, #111 0%, #1a1a1a 20%, #111 21%, #222 40%, #111 41%, #1a1a1a 60%, #111 61%, #222 80%, #111 100%)`,
-                transform: `rotate(${scrollProgress * 180}deg)`,
-                transition: "transform 0.1s linear",
-              }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/20" />
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Vinyl record — BEHIND the cover, peeks right. Always round. */}
+          <VinylDisc scrollProgress={scrollProgress} />
 
-          {/* Album cover */}
-          <div className="relative rounded-xl overflow-hidden shadow-2xl border border-black/10 aspect-square">
+          {/* Album cover — on top, square */}
+          <div
+            className="relative rounded-xl overflow-hidden shadow-2xl border border-black/10 aspect-square"
+            style={{ zIndex: 1 }}
+          >
             <Image
               src={album.image}
               alt={lang === "ko" ? album.titleKo : album.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 280px, (max-width: 1024px) 340px, 400px"
+              sizes="(max-width: 768px) 240px, (max-width: 1024px) 300px, 380px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </div>
@@ -296,7 +312,7 @@ function AlbumCard({
             className={`text-xs uppercase tracking-[0.25em] font-medium mb-3 mt-4 transition-all duration-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
-                : "opacity-100 translate-y-4"
+                : "opacity-0 translate-y-4"
             }`}
             style={{ color: album.color }}
           >
