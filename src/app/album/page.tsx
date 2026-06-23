@@ -60,34 +60,33 @@ export default function AlbumPage() {
                 {albums.map((album, i) => (
                   <div key={`${album.artistId}-${album.title}-${i}`} className="group">
                     <div className="aspect-square rounded-xl bg-gradient-to-br from-gray-900 via-[#1a1a2e] to-gray-800 border border-white/10 p-5 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
-                      <div className="absolute inset-0 bg-cover bg-center opacity-30"
+                      <div className="absolute inset-0 bg-cover bg-center opacity-20"
                         style={{ backgroundImage: `url(${album.image || album.artistImage})` }}
                       />
-                      <div className="absolute inset-0 bg-black/50" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-[#1a1a2e]/90 to-gray-800/80" />
 
-                      <div className="relative z-10 w-[65%] aspect-square rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.7)] border-[3px] border-white/15 transition-transform duration-700 group-hover:rotate-12">
+                      <div className="relative z-10 w-4/5 sm:w-[65%] aspect-square rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.7)] border-[3px] border-white/15 transition-transform duration-700 group-hover:rotate-12 flex-shrink-0">
                         <div
-                          className="absolute inset-0 bg-cover bg-center"
+                          className="absolute inset-0 bg-cover bg-center rounded-full"
                           style={{ backgroundImage: `url(${album.image || album.artistImage})` }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent rounded-full" />
                         <div className="w-[18%] h-[18%] rounded-full bg-gradient-to-br from-gray-200 via-white to-gray-400 shadow-inner relative z-10 border-2 border-white/30" />
                       </div>
 
-                      <div className="relative z-10 mt-4 text-center">
-                        <p className="text-sm md:text-base font-bold text-white leading-tight">
+                      <div className="relative z-10 mt-3 sm:mt-4 text-center">
+                        <p className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">
                           {lang === "ko" && album.titleKo ? album.titleKo : album.title}
                         </p>
-                        <p className="text-xs text-white/50 mt-1">
+                        <p className="text-[10px] sm:text-xs text-white/50 mt-0.5 sm:mt-1">
                           {lang === "ko" ? album.artistNameKo : album.artistName}
                         </p>
-                        <p className="text-[11px] text-white/30 mt-1.5">
+                        <p className="text-[10px] sm:text-[11px] text-white/30 mt-1 sm:mt-1.5">
                           {album.type} · {new Date(album.releaseDate).getFullYear()}
                         </p>
                       </div>
 
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-2 right-2 w-3 h-3 rounded-full border border-white/10" />
                     </div>
                   </div>
                 ))}
