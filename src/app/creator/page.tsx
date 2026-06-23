@@ -10,7 +10,7 @@ const heartMessages = [
 ];
 
 const gallery = [
-  "/images/me.jpg",
+  "/images/Me.jpg",
   "/images/jiwonme.jpg",
   "/images/jiheonme.jpg",
   "/images/chaeyoungme.jpg",
