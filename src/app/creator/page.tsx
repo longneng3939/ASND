@@ -72,14 +72,14 @@ export default function CreatorPage() {
                 {gallery.map((src, i) => (
                   <div
                     key={i}
-                    className={`rounded-3xl overflow-hidden bg-[var(--surface)] ${
-                      i === 0 ? "col-span-2 aspect-video" : "aspect-square"
-                    }`}
+                    className={`rounded-3xl overflow-hidden bg-[var(--surface)] ${i === 0 ? "col-span-2" : "aspect-square"
+                      }`}
                   >
                     <img
                       src={src}
                       alt=""
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      className={`w-full hover:scale-105 transition-transform duration-500 ${i === 0 ? "max-h-[260px] object-cover object-top" : "h-full object-cover"
+                        }`}
                     />
                   </div>
                 ))}
