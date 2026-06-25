@@ -59,11 +59,11 @@ export default function AlbumPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {albums.map((album, i) => (
                   <div key={`${album.artistId}-${album.title}-${i}`} className="group">
-                    <div className="aspect-square rounded-xl bg-gradient-to-br from-gray-900 via-[#1a1a2e] to-gray-800 border border-white/10 p-5 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
-                      <div className="absolute inset-0 bg-cover bg-center opacity-20"
+                    <div className="aspect-square rounded-xl border border-white/10 p-5 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
+                      <div className="absolute inset-0 bg-cover bg-center opacity-70"
                         style={{ backgroundImage: `url(${album.image || album.artistImage})` }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-[#1a1a2e]/90 to-gray-800/80" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray/40 via-gray/10 to-transparent" />
 
                       <div className="relative z-10 w-4/5 sm:w-[65%] aspect-square rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.7)] border-[3px] border-white/15 transition-transform duration-700 group-hover:rotate-12 flex-shrink-0">
                         <div
