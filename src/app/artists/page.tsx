@@ -32,8 +32,8 @@ export default function ArtistsPage() {
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
                 {t.artists.groups}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {groups.map((artist) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+                {groups.map((artist, i) => (
                   <ArtistCard
                     key={artist.id}
                     id={artist.id}
@@ -43,7 +43,8 @@ export default function ArtistsPage() {
                     type={artist.type === "group" ? "group" : "solo"}
                     description={artist.description}
                     descriptionKo={artist.descriptionKo}
-                    variant="featured"
+                    variant="photocard"
+                    index={i}
                   />
                 ))}
               </div>
@@ -55,8 +56,8 @@ export default function ArtistsPage() {
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
                 {t.artists.soloists}
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {soloists.map((artist) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+                {soloists.map((artist, i) => (
                   <ArtistCard
                     key={artist.id}
                     id={artist.id}
@@ -66,7 +67,8 @@ export default function ArtistsPage() {
                     type={artist.type === "group" ? "group" : "solo"}
                     description={artist.description}
                     descriptionKo={artist.descriptionKo}
-                    variant="featured"
+                    variant="photocard"
+                    index={groups.length + i}
                   />
                 ))}
               </div>

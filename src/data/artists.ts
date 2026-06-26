@@ -2,7 +2,7 @@ export interface Artist {
   id: string;
   name: string;
   nameKo: string;
-  type: "group" | "soloist";
+  type: "group" | "soloist" | "";
   debut: string;
   members?: string[];
   description: string;

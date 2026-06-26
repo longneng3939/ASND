@@ -306,10 +306,42 @@ html {
     }
 }
 
+/* Photocard entrance stagger */
+@keyframes photocardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.photocard-enter {
+    opacity: 0;
+    animation: photocardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes floatCard {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.animate-float {
+    animation: floatCard 4s ease-in-out infinite;
+}
+
 /* Reduced motion: disable heritage animations */
 @media (prefers-reduced-motion: reduce) {
     .animate-cinematic-reveal,
-    .animate-stamp-in {
+    .animate-stamp-in,
+    .photocard-enter,
+    .animate-float {
         animation: none;
         opacity: 1;
         transform: none;

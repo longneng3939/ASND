@@ -12,7 +12,8 @@ interface ArtistCardProps {
   type: "group" | "solo";
   description?: string;
   descriptionKo?: string;
-  variant?: "default" | "compact" | "featured";
+  variant?: "default" | "compact" | "featured" | "photocard";
+  index?: number;
 }
 
 export function ArtistCard({
@@ -24,6 +25,7 @@ export function ArtistCard({
   description,
   descriptionKo,
   variant = "default",
+  index = 0,
 }: ArtistCardProps) {
   const { lang } = useI18n();
   const displayName = lang === "ko" && nameKo ? nameKo : name;
@@ -83,6 +85,53 @@ export function ArtistCard({
               </p>
             )}
           </div>
+        </div>
+      </Link>
+    );
+  }
+
+  if (variant === "photocard") {
+    return (
+      <Link
+        href={`/artists/${id}`}
+        className="group block photocard-enter focus:outline-none focus:ring-2 focus:ring-accent"
+        style={{ animationDelay: `${index * 120}ms` }}
+        aria-label={`View ${displayName} profile`}
+      >
+        <div
+          className="relative animate-float rounded-xl bg-white shadow-md border border-gray-200 overflow-hidden transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 group-hover:rotate-1"
+          style={{ animationDelay: `${index * 0.4}s` }}
+        >
+          {/* Image area */}
+          <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
+            <Image
+              src={image}
+              alt={displayName}
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+          </div>
+
+          {/* Info strip */}
+          <div className="p-3 sm:p-4">
+            <div className="flex items-center justify-between gap-2 mb-0.5">
+              <h3 className="text-sm sm:text-base font-bold text-gray-900 truncate">
+                {displayName}
+              </h3>
+              <span className="shrink-0 text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                {type === "group" ? "G" : "S"}
+              </span>
+            </div>
+            {displayDescription && (
+              <p className="text-xs text-gray-500 line-clamp-1 leading-relaxed">
+                {displayDescription}
+              </p>
+            )}
+          </div>
+
+          {/* Accent bottom bar */}
+          <div className="h-1 bg-gradient-to-r from-accent to-secondary" />
         </div>
       </Link>
     );
