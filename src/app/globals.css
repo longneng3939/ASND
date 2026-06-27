@@ -336,12 +336,29 @@ html {
     animation: floatCard 4s ease-in-out infinite;
 }
 
+@keyframes kenBurns {
+    0% {
+        transform: scale(1) translateX(0);
+    }
+    50% {
+        transform: scale(1.08) translateX(-1.5%);
+    }
+    100% {
+        transform: scale(1) translateX(0);
+    }
+}
+
+.animate-ken-burns {
+    animation: kenBurns 20s ease-in-out infinite;
+}
+
 /* Reduced motion: disable heritage animations */
 @media (prefers-reduced-motion: reduce) {
     .animate-cinematic-reveal,
     .animate-stamp-in,
     .photocard-enter,
-    .animate-float {
+    .animate-float,
+    .animate-ken-burns {
         animation: none;
         opacity: 1;
         transform: none;

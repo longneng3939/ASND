@@ -16,7 +16,7 @@ export default function ArtistDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Artist not found</h1>
-          <Link href="/artists" className="underline text-gray-500 hover:text-black transition-colors">
+          <Link href="/artists" className="underline text-muted hover:text-foreground transition-colors">
             Back to artists
           </Link>
         </div>
@@ -24,127 +24,225 @@ export default function ArtistDetailPage() {
     );
   }
 
+  const displayDescription = lang === "ko" ? artist.descriptionKo : artist.description;
+  const albumCount = artist.discography?.length || 0;
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-surface">
 
-      {/* Artist Header */}
-      <section className="pt-28 pb-16 px-4">
-        <div className="mx-auto max-w-5xl">
-          <Link
-            href="/artists"
-            className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-black transition-colors mb-8 uppercase tracking-[0.15em]"
-          >
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 12H5m7-7l-7 7 7 7" />
-            </svg>
-            {t.artists.all}
-          </Link>
+      {/* ───── Content ───── */}
+      <section className="px-4 pt-28 pb-12 sm:pb-16 lg:pb-24">
+        <div className="mx-auto max-w-6xl">
 
-          <div className="flex flex-col md:flex-row gap-10 items-start">
-            <div className="flex-1 order-2 md:order-1">
-              <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-3">
-                {artist.type === "group" ? t.artists.groups : t.artists.soloists}
+          {/* Back + title header */}
+          <div className="mb-10 animate-slide-up">
+            <Link
+              href="/artists"
+              className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground transition-colors uppercase tracking-[0.15em] mb-6"
+            >
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 12H5m7-7l-7 7 7 7" />
+              </svg>
+              {t.artists.all}
+            </Link>
+            <span className="block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted mb-2">
+              {artist.type === "group" ? t.artists.groups : t.artists.soloists}
+            </span>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-none">
+              {artist.name}
+            </h1>
+            {artist.nameKo && (
+              <p className="text-base sm:text-lg text-muted font-medium mt-2">
+                {artist.nameKo}
               </p>
-              <h1 className="text-3xl sm:text-6xl font-black tracking-tight leading-none mb-2">
-                {artist.name}
-              </h1>
-              {artist.nameKo && (
-                <p className="text-lg text-gray-400 mt-1 mb-4">
-                  {artist.nameKo}
-                </p>
+            )}
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <span className="text-xs sm:text-sm text-muted tracking-wider">
+                {t.artists.debut} {artist.debut}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <span className="text-xs sm:text-sm text-muted tracking-wider">
+                {albumCount} {albumCount === 1 ? "Album" : "Albums"}
+              </span>
+              {artist.members && (
+                <>
+                  <span className="w-1 h-1 rounded-full bg-border" />
+                  <span className="text-xs sm:text-sm text-muted tracking-wider">
+                    {artist.members.length} Members
+                  </span>
+                </>
               )}
+            </div>
+          </div>
 
-              <div className="flex items-center gap-4 text-xs text-gray-400 uppercase tracking-wider mb-6">
-                <span>{t.artists.debut} {artist.debut}</span>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
+
+            {/* Main */}
+            <div className="lg:col-span-2 space-y-12 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+
+              {/* About */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-accent to-secondary" />
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-muted font-semibold">About</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-secondary to-accent" />
+                </div>
+                <p className="text-base sm:text-lg leading-relaxed text-foreground/75 max-w-3xl">
+                  {displayDescription}
+                </p>
               </div>
 
-              <p className="text-base leading-relaxed text-gray-600 max-w-2xl">
-                {lang === "ko" ? artist.descriptionKo : artist.description}
-              </p>
-
-              {artist.members && (
-                <div className="mt-8">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-3">
+              {/* Members */}
+              {artist.members && artist.members.length > 0 && (
+                <div>
+                  <h3 className="text-[10px] uppercase tracking-[0.25em] text-muted font-semibold mb-4">
                     {t.artists.members}
                   </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {artist.members.map((member) => (
-                      <span
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {artist.members.map((member, i) => (
+                      <div
                         key={member}
-                        className="text-sm text-gray-500"
+                        className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-border/50"
                       >
-                        {member}
-                      </span>
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-secondary flex items-center justify-center text-white text-xs font-bold shrink-0">
+                          {member[0]}
+                        </div>
+                        <span className="text-sm font-medium text-foreground/80 truncate">
+                          {member}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
               )}
 
+              {/* Social */}
               {artist.social && (
-                <div className="flex gap-6 mt-8">
-                  {artist.social.instagram && (
-                    <a
-                      href={artist.social.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-black transition-colors uppercase tracking-[0.15em]"
-                    >
-                      Instagram
-                    </a>
-                  )}
-                  {artist.social.twitter && (
-                    <a
-                      href={artist.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-black transition-colors uppercase tracking-[0.15em]"
-                    >
-                      Twitter / X
-                    </a>
-                  )}
-                  {artist.social.youtube && (
-                    <a
-                      href={artist.social.youtube}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-black transition-colors uppercase tracking-[0.15em]"
-                    >
-                      YouTube
-                    </a>
-                  )}
+                <div>
+                  <h3 className="text-[10px] uppercase tracking-[0.25em] text-muted font-semibold mb-4">
+                    Social
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {artist.social.instagram && (
+                      <a
+                        href={artist.social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium bg-white rounded-xl border border-border/50 text-foreground/70 hover:border-accent hover:text-foreground hover:shadow-sm transition-all"
+                      >
+                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        Instagram
+                      </a>
+                    )}
+                    {artist.social.twitter && (
+                      <a
+                        href={artist.social.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium bg-white rounded-xl border border-border/50 text-foreground/70 hover:border-accent hover:text-foreground hover:shadow-sm transition-all"
+                      >
+                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        X / Twitter
+                      </a>
+                    )}
+                    {artist.social.youtube && (
+                      <a
+                        href={artist.social.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium bg-white rounded-xl border border-border/50 text-foreground/70 hover:border-accent hover:text-foreground hover:shadow-sm transition-all"
+                      >
+                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        YouTube
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
-            <div className="w-full md:w-96 shrink-0 order-1 md:order-2">
-              <div className="aspect-[3/4] relative overflow-hidden bg-gray-100">
-                <Image
-                  src={artist.image}
-                  alt={artist.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 384px"
-                />
+            {/* Sidebar — Profile card */}
+            <div className="animate-slide-up" style={{ animationDelay: "0.5s" }}>
+              <div className="sticky top-8 space-y-6">
+                {/* Photo */}
+                <div className="relative">
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl bg-white ring-1 ring-border/50">
+                    <Image
+                      src={artist.image}
+                      alt={artist.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
+                  </div>
+                  {/* Decorative accent bar */}
+                  <div className="absolute -bottom-1 left-4 right-4 h-1 rounded-full bg-gradient-to-r from-accent via-secondary to-accent opacity-60" />
+                </div>
+
+                {/* Quick facts */}
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-center p-3 bg-white rounded-xl border border-border/50">
+                    <p className="text-lg font-black text-foreground">{artist.debut}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted mt-0.5">Debut</p>
+                  </div>
+                  <div className="text-center p-3 bg-white rounded-xl border border-border/50">
+                    <p className="text-lg font-black text-foreground">{albumCount}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted mt-0.5">Albums</p>
+                  </div>
+                  <div className="text-center p-3 bg-white rounded-xl border border-border/50">
+                    <p className="text-lg font-black text-foreground">
+                      {artist.type === "group" ? (artist.members?.length || "-") : "—"}
+                    </p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted mt-0.5">Members</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Discography */}
+      {/* ───── Discography ───── */}
       {artist.discography && artist.discography.length > 0 && (
-        <section className="px-4 pb-24">
-          <div className="mx-auto max-w-5xl">
-            <div className="border-t border-gray-200 pt-10">
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
-                {t.artists.discography}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
+        <section className="px-4 pb-24 animate-slide-up" style={{ animationDelay: "0.6s" }}>
+          <div className="mx-auto max-w-6xl">
+            <div className="pt-12 border-t border-border">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-px flex-1 bg-gradient-to-r from-accent to-secondary" />
+                <span className="text-[10px] uppercase tracking-[0.25em] text-muted font-semibold">
+                  {t.artists.discography}
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-secondary to-accent" />
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 {artist.discography.map((album) => (
-                  <div key={album.title} className="bg-white p-6">
-                    <h3 className="text-sm font-bold mb-1">{album.title}</h3>
-                    <p className="text-xs text-gray-400 uppercase tracking-wider">{album.type}</p>
-                    <p className="text-xs text-gray-300 mt-2">{album.releaseDate}</p>
+                  <div
+                    key={album.title}
+                    className="group bg-white rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-all duration-400 hover:-translate-y-1.5"
+                  >
+                    <div className="aspect-square relative overflow-hidden bg-surface">
+                      {album.image ? (
+                        <Image
+                          src={album.image}
+                          alt={album.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-muted/20">
+                          <svg className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-sm font-bold text-foreground truncate">{album.title}</h3>
+                      <p className="text-xs text-muted mt-0.5 truncate">{album.type}</p>
+                      <p className="text-[11px] text-muted/50 mt-1.5">{album.releaseDate}</p>
+                    </div>
+                    <div className="h-0.5 bg-gradient-to-r from-accent to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   </div>
                 ))}
               </div>
@@ -153,13 +251,13 @@ export default function ArtistDetailPage() {
         </section>
       )}
 
-      {/* Back link */}
+      {/* Bottom back link */}
       <section className="px-4 pb-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="border-t border-gray-200 pt-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="pt-8 border-t border-border flex justify-center">
             <Link
               href="/artists"
-              className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-black transition-colors uppercase tracking-[0.15em]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-border/50 text-xs font-medium text-muted hover:text-foreground hover:border-accent hover:shadow-sm transition-all uppercase tracking-[0.15em]"
             >
               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 12H5m7-7l-7 7 7 7" />
