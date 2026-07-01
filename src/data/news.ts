@@ -65,7 +65,3 @@ export function getRecentNews(count?: number): NewsItem[] {
   );
   return count ? sorted.slice(0, count) : sorted;
 }
-
-export function getNewsById(id: string): NewsItem | undefined {
-  return newsItems.find((n) => n.id === id);
-}

@@ -153,13 +153,3 @@ export const artists: Artist[] = [
 export function getArtistById(id: string): Artist | undefined {
   return artists.find((a) => a.id === id);
 }
-
-export function getArtistsByType(type: "group" | "soloist"): Artist[] {
-  return artists.filter((a) => a.type === type);
-}
-
-export function getGroupMembers(groupId: string): Artist[] {
-  const group = artists.find((a) => a.id === groupId);
-  if (!group?.members) return [];
-  return artists.filter((a) => group.members!.includes(a.name.split(" ").pop()!));
-}

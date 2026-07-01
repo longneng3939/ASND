@@ -6,7 +6,7 @@ import { ko } from "./ko";
 
 const translations: Record<string, Translation> = { en, ko };
 
-type Lang = "en" | "ko" | "jp" | "ch";
+type Lang = "en" | "ko";
 
 interface I18nContextType {
   lang: Lang;

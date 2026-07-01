@@ -5,7 +5,6 @@ import { useRouter, usePathname } from "next/navigation";
 
 interface TransitionContextType {
   navigate: (href: string) => void;
-  isLoading: boolean;
 }
 
 const TransitionContext = createContext<TransitionContextType>({
@@ -36,7 +35,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   }, [router, pathname]);
 
   return (
-    <TransitionContext.Provider value={{ navigate, isLoading }}>
+    <TransitionContext.Provider value={{ navigate }}>
       {children}
       {isLoading && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#1E2A44] animate-fade-in">
