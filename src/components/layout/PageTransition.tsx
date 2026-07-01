@@ -9,7 +9,6 @@ interface TransitionContextType {
 
 const TransitionContext = createContext<TransitionContextType>({
   navigate: () => {},
-  isLoading: false,
 });
 
 export function useTransition() {
