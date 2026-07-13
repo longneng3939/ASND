@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
+import { useReveal } from "./Reveal";
 
 interface ArtistCardProps {
   id: string;
@@ -28,6 +29,7 @@ export function ArtistCard({
   index = 0,
 }: ArtistCardProps) {
   const { lang } = useI18n();
+  const { ref, visible } = useReveal<HTMLDivElement>();
   const displayName = lang === "ko" && nameKo ? nameKo : name;
   const displayDescription =
     lang === "ko" && descriptionKo ? descriptionKo : description;
@@ -94,16 +96,19 @@ export function ArtistCard({
     return (
       <Link
         href={`/artists/${id}`}
-        className="group block photocard-enter focus:outline-none focus:ring-2 focus:ring-accent"
-        style={{ animationDelay: `${index * 120}ms` }}
+        className={`group block focus:outline-none focus:ring-2 focus:ring-accent ${visible ? "cinematic-fade" : "reveal-hidden"}`}
+        style={{ animationDelay: `${index * 100}ms` }}
         aria-label={`View ${displayName} profile`}
       >
         <div
-          className="relative animate-float rounded-xl bg-white shadow-md border border-gray-200 overflow-hidden transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 group-hover:rotate-1"
-          style={{ animationDelay: `${index * 0.4}s` }}
+          ref={ref}
+          className="relative rounded-xl bg-white shadow-md border border-gray-200 overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 group-hover:rotate-1"
         >
           {/* Image area */}
-          <div className="relative aspect-[3/4] overflow-hidden bg-gray-50">
+          <div
+            className={`relative aspect-[3/4] overflow-hidden bg-gray-50 ${visible ? "cinematic-img-reveal" : "reveal-hidden"}`}
+            style={{ animationDelay: `${index * 100 + 100}ms` }}
+          >
             <Image
               src={image}
               alt={displayName}
@@ -114,20 +119,25 @@ export function ArtistCard({
           </div>
 
           {/* Info strip */}
-          <div className="p-3 sm:p-4">
-            <div className="flex items-center justify-between gap-2 mb-0.5">
-              <h3 className="text-sm sm:text-base font-bold text-gray-900 truncate">
-                {displayName}
-              </h3>
-              <span className="shrink-0 text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                {type === "group" ? "G" : "S"}
-              </span>
+          <div className="p-3 sm:p-4 overflow-hidden">
+            <div
+              className={visible ? "text-rise-blur" : "reveal-hidden"}
+              style={{ animationDelay: `${index * 100 + 250}ms` }}
+            >
+              <div className="flex items-center justify-between gap-2 mb-0.5">
+                <h3 className="text-sm sm:text-base font-bold text-gray-900 truncate">
+                  {displayName}
+                </h3>
+                <span className="shrink-0 text-[10px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                  {type === "group" ? "G" : "S"}
+                </span>
+              </div>
+              {displayDescription && (
+                <p className="text-xs text-gray-500 line-clamp-1 leading-relaxed">
+                  {displayDescription}
+                </p>
+              )}
             </div>
-            {displayDescription && (
-              <p className="text-xs text-gray-500 line-clamp-1 leading-relaxed">
-                {displayDescription}
-              </p>
-            )}
           </div>
 
           {/* Accent bottom bar */}
