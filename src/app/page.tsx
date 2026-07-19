@@ -17,7 +17,9 @@ export default function HomePage() {
         variant="info"
       />
       <JypHeroCarousel />
+      <FeaturedArtists />
       <ScrollytellingAlbums />
+      <UpcomingEvents />
       <NewsTicker />
     </>
   );

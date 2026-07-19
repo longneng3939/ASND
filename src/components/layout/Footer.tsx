@@ -6,7 +6,6 @@ import { siteConfig } from "@/data/site";
 
 const familySites = [
   { name: "ASND AUDITION", href: "/audition" },
-  { name: "ASND RECRUIT", href: "/contact" },
   { name: "ASND SHOP", href: "#" },
   { name: "ASND FANS", href: "#" },
   { name: "ASND PUBLISHING", href: "#" },
@@ -153,11 +152,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-muted hover:text-brand transition-colors">
-                  {t.nav.contact}
-                </Link>
-              </li>
-              <li>
                 <Link href="/audition" className="text-sm text-muted hover:text-brand transition-colors">
                   {t.nav.audition}
                 </Link>
@@ -171,13 +165,13 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {siteConfig.fullName}. {t.footer.rights}
           </p>
           <div className="flex gap-4">
-            <Link href="/contact" className="text-xs text-muted hover:text-brand transition-colors">
+            <span className="text-xs text-muted">
               {t.footer.privacy}
-            </Link>
+            </span>
             <span className="text-xs text-muted">|</span>
-            <Link href="/contact" className="text-xs text-muted hover:text-brand transition-colors">
+            <span className="text-xs text-muted">
               {t.footer.terms}
-            </Link>
+            </span>
           </div>
         </div>
       </div>

@@ -19,7 +19,6 @@ const navLinks = [
   { href: "/news", label: "News", labelKo: "뉴스", desc: "Latest updates", descKo: "최신 소식" },
   { href: "/audition", label: "Audition", labelKo: "오디션", desc: "Join ASND", descKo: "지원하기" },
   { href: "/about", label: "About", labelKo: "소개", desc: "Our story", descKo: "ASND 소개" },
-  { href: "/contact", label: "Disclosure", labelKo: "공시", desc: "Business info", descKo: "사업자 정보" },
   { href: "/creator", label: "Creator", labelKo: "크리에이터", desc: "About the creator", descKo: "제작자 정보" },
 ];
 
@@ -236,12 +235,6 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                       className="px-4 py-2 text-sm font-medium rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.08] transition-all duration-200 hover:scale-[1.02]"
                     >
                       {lang === "ko" ? "오디션" : "Audition"}
-                    </button>
-                    <button
-                      onClick={() => handleNav("/contact")}
-                      className="px-4 py-2 text-sm font-medium rounded-xl bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.08] transition-all duration-200 hover:scale-[1.02]"
-                    >
-                      {lang === "ko" ? "문의" : "Contact"}
                     </button>
                     <button
                       onClick={() => handleNav("/news")}
