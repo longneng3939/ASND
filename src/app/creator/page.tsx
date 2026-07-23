@@ -4,6 +4,8 @@ import { useState, type CSSProperties } from "react";
 import { useI18n } from "@/i18n";
 import { Reveal } from "@/components/ui/Reveal";
 
+const heroSlides = ["/images/Group.jpg", "/images/likeyou.jpg"];
+
 const gallery = [
   { src: "/images/Hayoungmr.jpg", name: "Hayoung", nameKo: "하영" },
   { src: "/images/jiwonme.jpg", name: "Jiwon", nameKo: "지원" },
@@ -65,15 +67,34 @@ export default function CreatorPage() {
         onMouseMove={handleMouseMove}
         className="relative flex min-h-[88vh] flex-col overflow-hidden bg-[#050505]"
       >
+        {/* Animated fromis_9 background slideshow */}
+        <div style={parallax(12)} className="pointer-events-none absolute inset-0">
+          {heroSlides.map((src, i) => (
+            <div
+              key={src}
+              aria-hidden
+              className="hero-slide absolute -inset-6 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${src})`,
+                animationDelay: `${i * 7}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Cinematic readability overlays */}
+        <div className="pointer-events-none absolute inset-0 bg-[#050505]/30" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#050505]/85 via-[#050505]/40 to-[#050505]" />
+
         {/* Aurora glows */}
         <div style={parallax(34)} className="pointer-events-none absolute inset-0">
-          <div className="animate-aurora absolute -top-32 left-[10%] h-[26rem] w-[26rem] rounded-full bg-[#6C3FD1]/25 blur-[110px]" />
+          <div className="animate-aurora absolute -top-32 left-[10%] h-[26rem] w-[26rem] rounded-full bg-[#6C3FD1]/15 blur-[110px]" />
           <div
-            className="animate-aurora absolute right-[5%] top-[30%] h-[22rem] w-[22rem] rounded-full bg-[#F7C8D8]/[0.13] blur-[110px]"
+            className="animate-aurora absolute right-[5%] top-[30%] h-[22rem] w-[22rem] rounded-full bg-[#F7C8D8]/[0.08] blur-[110px]"
             style={{ animationDelay: "-6s" }}
           />
           <div
-            className="animate-aurora absolute bottom-[5%] left-[30%] h-[18rem] w-[18rem] rounded-full bg-[#a9d8ff]/10 blur-[100px]"
+            className="animate-aurora absolute bottom-[5%] left-[30%] h-[18rem] w-[18rem] rounded-full bg-[#a9d8ff]/[0.07] blur-[100px]"
             style={{ animationDelay: "-11s" }}
           />
         </div>
