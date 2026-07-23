@@ -431,3 +431,99 @@ html {
         clip-path: none;
     }
 }
+
+/* ===== Mega menu marquee ===== */
+@keyframes menuMarquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-menu-marquee {
+    animation: menuMarquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-menu-marquee {
+        animation: none;
+    }
+}
+
+/* ===== Creator page animations ===== */
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(0.7) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15) rotate(20deg);
+    }
+}
+
+@keyframes auroraDrift {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(4%, 6%) scale(1.1);
+    }
+}
+
+@keyframes gradientX {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes scrollDot {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(14px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(18px);
+        opacity: 0;
+    }
+}
+
+.animate-twinkle {
+    animation: twinkle 3.5s ease-in-out infinite;
+}
+
+.animate-aurora {
+    animation: auroraDrift 16s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+    animation: gradientX 8s ease-in-out infinite;
+}
+
+.animate-scroll-dot {
+    animation: scrollDot 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-twinkle,
+    .animate-aurora,
+    .animate-gradient-x,
+    .animate-scroll-dot {
+        animation: none;
+    }
+}
